@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import { Spade, Heart, Club, Diamond } from "lucide-react"
+import { motion, useReducedMotion } from "framer-motion"
 
 import { buttonVariants } from "@/components/ui/button"
 
@@ -12,59 +15,174 @@ function AppleIcon({ className }: { className?: string }) {
 }
 
 export function CtaSection() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <section className="relative w-full max-w-[1440px] mx-auto px-6 sm:px-10 pb-20 md:pb-32">
-      <div className="relative w-full bg-card text-card-foreground border border-border/60 rounded-3xl md:rounded-[2.5rem] p-8 sm:p-14 md:p-20 overflow-hidden text-center shadow-xl">
+      <motion.div
+        initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96, y: shouldReduceMotion ? 0 : 30 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] as const }}
+        className="relative w-full bg-card text-card-foreground border border-border/60 rounded-3xl md:rounded-[2.5rem] p-8 sm:p-14 md:p-20 overflow-hidden text-center shadow-xl"
+      >
         {/* Background Concentric Rings & Ambient Glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
-          <div className="size-[300px] sm:size-[500px] md:size-[650px] rounded-full border border-border/30 bg-primary/5 blur-2xl" />
-          <div className="absolute size-[220px] sm:size-[380px] md:size-[480px] rounded-full border border-border/40" />
-          <div className="absolute size-[140px] sm:size-[240px] md:size-[300px] rounded-full border border-border/30" />
+          <motion.div
+            animate={
+              shouldReduceMotion
+                ? {}
+                : {
+                    scale: [1, 1.05, 1],
+                    opacity: [0.2, 0.4, 0.2],
+                  }
+            }
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="size-[300px] sm:size-[500px] md:size-[650px] rounded-full border border-border/30 bg-primary/5 blur-2xl"
+          />
+          <motion.div
+            animate={
+              shouldReduceMotion
+                ? {}
+                : {
+                    scale: [1, 1.04, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                  }
+            }
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute size-[220px] sm:size-[380px] md:size-[480px] rounded-full border border-border/40"
+          />
+          <motion.div
+            animate={
+              shouldReduceMotion
+                ? {}
+                : {
+                    scale: [1, 1.06, 1],
+                    opacity: [0.2, 0.4, 0.2],
+                  }
+            }
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute size-[140px] sm:size-[240px] md:size-[300px] rounded-full border border-border/30"
+          />
         </div>
 
         {/* Floating Card Suit Accents */}
-        <div className="absolute top-8 left-8 sm:top-12 sm:left-14 text-muted-foreground/20 pointer-events-none">
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  y: [-4, 4, -4],
+                  rotate: [-3, 3, -3],
+                }
+          }
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-8 left-8 sm:top-12 sm:left-14 text-muted-foreground/20 pointer-events-none"
+        >
           <Club className="size-8 sm:size-12 fill-current" />
-        </div>
-        <div className="absolute top-8 right-8 sm:top-12 sm:right-14 text-primary/30 pointer-events-none">
+        </motion.div>
+
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  y: [4, -4, 4],
+                  rotate: [3, -3, 3],
+                }
+          }
+          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-8 right-8 sm:top-12 sm:right-14 text-primary/30 pointer-events-none"
+        >
           <Diamond className="size-8 sm:size-12 fill-current" />
-        </div>
-        <div className="absolute bottom-8 left-8 sm:bottom-12 sm:left-14 text-muted-foreground/20 pointer-events-none">
+        </motion.div>
+
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  y: [3, -3, 3],
+                  rotate: [-2, 2, -2],
+                }
+          }
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          className="absolute bottom-8 left-8 sm:bottom-12 sm:left-14 text-muted-foreground/20 pointer-events-none"
+        >
           <Spade className="size-8 sm:size-12 fill-current" />
-        </div>
-        <div className="absolute bottom-8 right-8 sm:bottom-12 sm:right-14 text-primary/30 pointer-events-none">
+        </motion.div>
+
+        <motion.div
+          animate={
+            shouldReduceMotion
+              ? {}
+              : {
+                  y: [-5, 5, -5],
+                  rotate: [4, -4, 4],
+                }
+          }
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+          className="absolute bottom-8 right-8 sm:bottom-12 sm:right-14 text-primary/30 pointer-events-none"
+        >
           <Heart className="size-8 sm:size-12 fill-current" />
-        </div>
+        </motion.div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center max-w-2xl mx-auto">
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground font-medium mb-4">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-mono text-xs uppercase tracking-widest text-muted-foreground font-medium mb-4"
+          >
             Available on iOS
-          </span>
+          </motion.span>
 
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.08] mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] as const }}
+            className="text-4xl sm:text-6xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.08] mb-4"
+          >
             Save a seat <br />
             for a friend.
-          </h2>
+          </motion.h2>
 
-          <p className="text-muted-foreground text-base sm:text-lg max-w-md leading-relaxed mb-8">
-            Tablanet is free on the App Store. Download now and start playing private games instantly.
-          </p>
-
-          <Link
-            href="/download"
-            prefetch={false}
-            className={buttonVariants({
-              size: "lg",
-              className:
-                "h-13 md:h-15 px-8 md:px-10 text-base md:text-lg rounded-full font-semibold shadow-md transition-transform hover:scale-105 active:scale-95 gap-3",
-            })}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.23, 1, 0.32, 1] as const }}
+            className="text-muted-foreground text-base sm:text-lg max-w-md leading-relaxed mb-8"
           >
-            <AppleIcon className="size-5 md:size-6" />
-            Download on App Store
-          </Link>
+            Tablanet is free on the App Store. Download now and start playing private games instantly.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+          >
+            <Link
+              href="/download"
+              prefetch={false}
+              className={buttonVariants({
+                size: "lg",
+                className:
+                  "h-13 md:h-15 px-8 md:px-10 text-base md:text-lg rounded-full font-semibold shadow-md gap-3",
+              })}
+            >
+              <AppleIcon className="size-5 md:size-6" />
+              Download on App Store
+            </Link>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
