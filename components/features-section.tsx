@@ -15,14 +15,13 @@ const features = [
     ),
     description:
       "Send a single-use invitation. Your match stays between the two of you.",
-    imageSrc: "/images/card-invitation.jpg",
+    imageSrc: "/images/1.png",
     imageAlt: "Private invitation illustration",
   },
   {
     title: "A proper duel.",
-    description:
-      "Two people, one table, the full 52-card game. Best of three?",
-    imageSrc: "/images/card-duel.jpg",
+    description: "Two people, one table, the full 52-card game. Best of three?",
+    imageSrc: "/images/duel.png",
     imageAlt: "Live table card duel illustration",
   },
   {
@@ -35,7 +34,7 @@ const features = [
     ),
     description:
       "No ads, chips, chat, or public matchmaking. Just the game and the person across the table.",
-    imageSrc: "/images/card-pure-gameplay.jpg",
+    imageSrc: "/images/3.png",
     imageAlt: "Pure gameplay cards illustration",
   },
 ]
@@ -60,7 +59,11 @@ export function FeaturesSection() {
     <section className="relative mx-auto w-full max-w-[1440px] px-6 py-16 sm:px-10 md:py-24 lg:py-32">
       {/* Section Header */}
       <div className="mb-12 flex flex-col justify-between gap-8 md:mb-16 lg:flex-row lg:items-end">
-        <FadeIn direction="up" distance={20} className="flex max-w-2xl flex-col gap-3">
+        <FadeIn
+          direction="up"
+          distance={20}
+          className="flex max-w-2xl flex-col gap-3"
+        >
           <h2 className="text-4xl leading-[1.08] font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
             A quiet place for <br className="hidden sm:inline" />
             <span className="text-primary">a proper game.</span>
@@ -84,7 +87,14 @@ export function FeaturesSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
-            whileHover={shouldReduceMotion ? {} : { y: -6, transition: { type: "spring", stiffness: 350, damping: 25 } }}
+            whileHover={
+              shouldReduceMotion
+                ? {}
+                : {
+                    y: -6,
+                    transition: { type: "spring", stiffness: 350, damping: 25 },
+                  }
+            }
             whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
             className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-border/60 bg-card p-6 text-card-foreground shadow-sm transition-colors hover:border-primary/40 hover:shadow-md sm:p-8"
           >
@@ -96,13 +106,13 @@ export function FeaturesSection() {
                 {feature.description}
               </p>
             </div>
-            <div className="relative mt-8 aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border/40 bg-background/50">
+            <div className="relative -mx-6 mt-6 -mb-6 aspect-[4/3] w-[calc(100%+3rem)] overflow-hidden sm:-mx-8 sm:-mb-8 sm:w-[calc(100%+4rem)]">
               <Image
                 src={feature.imageSrc}
                 alt={feature.imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-bottom transition-transform duration-500 group-hover:scale-105"
               />
             </div>
           </motion.div>
