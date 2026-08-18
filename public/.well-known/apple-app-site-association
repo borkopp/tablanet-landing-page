@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "HQQV94Q788.com.tablanet.game"
+        ],
+        "components": [
+          {
+            "/": "/invite/*"
+          }
+        ]
+      }
+    ]
+  }
+}
