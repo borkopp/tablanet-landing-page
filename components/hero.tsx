@@ -43,7 +43,7 @@ export function Hero() {
         className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center justify-between px-6 py-6 sm:px-10 md:py-8"
       >
         {/* Enlarged Logo */}
-        <Link href="/" className="flex items-center gap-3.5 select-none group">
+        <Link href="/" className="group flex items-center gap-3.5 select-none">
           <motion.div
             whileHover={{ rotate: [0, -5, 5, 0] }}
             transition={{ duration: 0.4 }}
@@ -58,7 +58,7 @@ export function Hero() {
               className="h-11 w-auto shrink-0 md:h-12"
             />
           </motion.div>
-          <span className="font-heading text-2xl font-bold tracking-tight text-foreground md:text-3xl transition-colors group-hover:text-primary">
+          <span className="font-heading text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary md:text-3xl">
             Tablanet
           </span>
         </Link>
@@ -103,7 +103,11 @@ export function Hero() {
 
         {/* Hero Mockup Image */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 40, scale: shouldReduceMotion ? 1 : 0.97 }}
+          initial={{
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 40,
+            scale: shouldReduceMotion ? 1 : 0.97,
+          }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
             duration: 0.8,
@@ -132,7 +136,11 @@ export function Hero() {
           />
 
           <div className="relative z-10 flex w-full justify-center">
-            <TiltCard maxTilt={6} scaleOnHover={1.01} className="w-full flex justify-center">
+            <TiltCard
+              maxTilt={6}
+              scaleOnHover={1.01}
+              className="flex w-full justify-center"
+            >
               <Image
                 src="/images/hero-mockup.png"
                 alt="Tablanet card game interface mockups on dual mobile devices"
