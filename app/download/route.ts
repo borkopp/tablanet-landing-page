@@ -1,6 +1,6 @@
-const APP_STORE_ID_PATTERN = /^\d{6,20}$/
+import { APP_STORE_URL } from "@/lib/site"
 
-function noStoreRedirect(destination: URL) {
+function noStoreRedirect(destination: URL | string) {
   return new Response(null, {
     status: 307,
     headers: {
@@ -15,9 +15,14 @@ function noStoreRedirect(destination: URL) {
 export function GET(request: Request) {
   const appStoreID = process.env.APP_STORE_ID?.trim()
 
-  if (appStoreID && APP_STORE_ID_PATTERN.test(appStoreID)) {
+  if (appStoreID) {
     return noStoreRedirect(new URL(`https://apps.apple.com/app/id${appStoreID}`))
+  }
+
+  if (APP_STORE_URL) {
+    return noStoreRedirect(new URL(APP_STORE_URL))
   }
 
   return noStoreRedirect(new URL("/contact", request.url))
 }
+
